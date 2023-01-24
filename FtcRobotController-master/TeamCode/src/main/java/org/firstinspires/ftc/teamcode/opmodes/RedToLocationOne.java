@@ -1,4 +1,4 @@
-//Stock
+//Edited a little bit
 package org.firstinspires.ftc.teamcode.opmodes;
 
 
@@ -28,21 +28,24 @@ public class RedToLocationOne extends CommandOpMode {
 
         DriveStrafeDistanceCommand driveRightStrafeCommand =
                 new DriveStrafeDistanceCommand(mecanumDriveSubsystem,
-                        DriveStrafeDistanceCommand.Direction.RIGHT,5, telemetry);
+                        DriveStrafeDistanceCommand.Direction.RIGHT,36, telemetry);
         DriveStrafeDistanceCommand driveLeftStrafeCommand =
                 new DriveStrafeDistanceCommand(mecanumDriveSubsystem,
-                        DriveStrafeDistanceCommand.Direction.LEFT,5, telemetry);
+                        DriveStrafeDistanceCommand.Direction.LEFT,36, telemetry);
         DriveDistanceCommand driveForwardsCommand =
                 new DriveDistanceCommand(mecanumDriveSubsystem,
-                        DriveDistanceCommand.DriveDirection.FORWARDS,24);
+                        DriveDistanceCommand.DriveDirection.FORWARDS,36);
         DriveDistanceCommand driveBackwardsCommand =
                 new DriveDistanceCommand(mecanumDriveSubsystem,
-                        DriveDistanceCommand.DriveDirection.BACKWARDS,7);
+                        DriveDistanceCommand.DriveDirection.BACKWARDS,36);
         DriveDistanceCommand driveStopCommand =
                 new DriveDistanceCommand(mecanumDriveSubsystem,
                         DriveDistanceCommand.DriveDirection.STOP,0);
         // schedule(new SequentialCommandGroup(driveLeftStrafeCommand, driveBackwardsCommand, driveRightStrafeCommand, driveForwardsCommand));
         schedule(new SequentialCommandGroup(driveForwardsCommand));
+        schedule(new SequentialCommandGroup(driveBackwardsCommand));
+        schedule(new SequentialCommandGroup(driveLeftStrafeCommand));
+        schedule(new SequentialCommandGroup(driveRightStrafeCommand));
         register(telemetryUpdateSubsystem);
     }
 }
