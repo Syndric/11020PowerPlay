@@ -7,8 +7,8 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 
-import org.firstinspires.ftc.teamcode.commands.DriveDistanceCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveStrafeDistanceCommand;
+import org.firstinspires.ftc.teamcode.commands.old.old_DriveDistanceCommand;
+import org.firstinspires.ftc.teamcode.commands.old.old_DriveStrafeDistanceCommand;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.TelemetryUpdateSubsystem;
 
@@ -22,12 +22,12 @@ public class ToLocationOne extends CommandOpMode {
     public void initialize() {
         telemetryUpdateSubsystem = new TelemetryUpdateSubsystem(telemetry);
         MecanumDriveSubsystem mecanumDriveSubsystem = new MecanumDriveSubsystem(hardwareMap, telemetry);
-        DriveDistanceCommand driveForwardCommand =
-                new DriveDistanceCommand(mecanumDriveSubsystem,
-                        DriveDistanceCommand.DriveDirection.FORWARDS,24);
-        DriveStrafeDistanceCommand driveLeftStrafeCommand =
-                new DriveStrafeDistanceCommand(mecanumDriveSubsystem,
-                        DriveStrafeDistanceCommand.Direction.LEFT,26,telemetry);
+        old_DriveDistanceCommand driveForwardCommand =
+                new old_DriveDistanceCommand(mecanumDriveSubsystem,
+                        old_DriveDistanceCommand.DriveDirection.FORWARDS,24);
+        old_DriveStrafeDistanceCommand driveLeftStrafeCommand =
+                new old_DriveStrafeDistanceCommand(mecanumDriveSubsystem,
+                        old_DriveStrafeDistanceCommand.Direction.LEFT,26,telemetry);
         schedule(new SequentialCommandGroup(driveForwardCommand));
         schedule(new SequentialCommandGroup(driveLeftStrafeCommand));
         register(telemetryUpdateSubsystem);

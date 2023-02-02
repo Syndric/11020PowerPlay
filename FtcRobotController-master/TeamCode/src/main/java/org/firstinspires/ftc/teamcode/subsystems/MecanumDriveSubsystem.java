@@ -37,14 +37,16 @@ public class MecanumDriveSubsystem extends SubsystemBase {
         rightFrontDrive.motor.setDirection(DcMotor.Direction.FORWARD);
         rightBackDrive.motor.setDirection(DcMotor.Direction.FORWARD);
 
-        leftFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         mecanumDrive = new MecanumDrive(leftFrontDrive, rightFrontDrive, leftBackDrive, rightBackDrive);
     }
-
+    //axial: forward
+    //turn: yaw
+    //strafe: side
     public void Drive(double forward, double turn, double strafe) {
         mecanumDrive.driveRobotCentric(-strafe, forward, -turn, false);
     }
