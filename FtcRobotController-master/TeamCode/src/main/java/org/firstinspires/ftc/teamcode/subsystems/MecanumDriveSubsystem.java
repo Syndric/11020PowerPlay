@@ -13,17 +13,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class MecanumDriveSubsystem extends SubsystemBase {
-
-    private MecanumDrive drive;
     private GamepadEx driverOp;
     private Telemetry telemetry;
     // private IMUSystem imuSystem;
     private MecanumDrive mecanumDrive;
     private MecanumDriveSubsystem mecanumDriveSubsystem;
-    private Motor leftBackDrive;
-    private Motor leftFrontDrive;
-    private Motor rightBackDrive;
-    private Motor rightFrontDrive;
+    private Motor leftFrontDrive, leftBackDrive, rightFrontDrive, rightBackDrive;
 
     public MecanumDriveSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -32,30 +27,28 @@ public class MecanumDriveSubsystem extends SubsystemBase {
         rightFrontDrive = new Motor(hardwareMap, "RIGHT_FRONT");
         rightBackDrive = new Motor(hardwareMap, "RIGHT_BACK");
 
-        leftFrontDrive.motor.setDirection(DcMotor.Direction.REVERSE);
-        leftBackDrive.motor.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontDrive.motor.setDirection(DcMotor.Direction.FORWARD);
-        rightBackDrive.motor.setDirection(DcMotor.Direction.FORWARD);
-
-        //leftFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //leftBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //rightFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //rightBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFrontDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBackDrive.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         mecanumDrive = new MecanumDrive(leftFrontDrive, rightFrontDrive, leftBackDrive, rightBackDrive);
     }
-    //axial: forward
-    //turn: yaw
-    //strafe: side
-    public void Drive(double forward, double turn, double strafe) {
-        mecanumDrive.driveRobotCentric(-strafe, forward, -turn, false);
+    public void Drive(double forward, double turn, double lateral) {
+        mecanumDrive.driveRobotCentric(lateral, forward, turn, true);
     }
 
     public double getLeftBackDrivePosition() {
-        return leftBackDrive.getCurrentPosition();
+        return leftBackDrive.encoder.getPosition();
     }
 
     public double getEnconderPosition() {
-        return leftBackDrive.getCurrentPosition();
+        return leftBackDrive.encoder.getPosition();
+    }
+
+    @Override
+    public void periodic() {
+        telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontDrive.motor.getPower(), rightFrontDrive.motor.getPower());
+        telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackDrive.motor.getPower(), rightBackDrive.motor.getPower());
     }
 }

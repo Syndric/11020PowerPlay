@@ -31,7 +31,7 @@ public class ArmSubsystem extends SubsystemBase {
 
     public ArmSubsystem(HardwareMap hardwaremap, Telemetry telemetry) {
         this.telemetry = telemetry;
-        armMotor = new MotorEx(hardwaremap, "ArmMotor"); // get motor
+        armMotor = new MotorEx(hardwaremap, "LIFT_MOTOR"); // get motor
         armMotor.setRunMode(Motor.RunMode.PositionControl); // set run mode
         armMotor.setPositionCoefficient(0.05); //set PositionCoefficient
         double kP = armMotor.getPositionCoefficient();

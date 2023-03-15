@@ -7,20 +7,20 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDriveSubsystem;
 
 public class MecanumDeclareCommand extends CommandBase {
     private MecanumDriveSubsystem mecanumDriveSubsystem;
-    private double axial, yaw, lateral;
+    private double forward, turn, lateral;
     private Telemetry telemetry;
 
     public MecanumDeclareCommand(MecanumDriveSubsystem mecanumDriveSubsystem,
-                               double axial, double yaw, double lateral) {
+                               double forward, double turn, double lateral) {
         this.mecanumDriveSubsystem = mecanumDriveSubsystem;
-        this.axial = axial;
-        this.yaw = yaw;
+        this.forward = forward;
+        this.turn = turn;
         this.lateral = lateral;
         addRequirements(mecanumDriveSubsystem);
     }
 
     @Override
     public void execute () {
-        mecanumDriveSubsystem.Drive(axial, yaw, lateral);
+        mecanumDriveSubsystem.Drive(forward, turn, lateral);
     }
 }

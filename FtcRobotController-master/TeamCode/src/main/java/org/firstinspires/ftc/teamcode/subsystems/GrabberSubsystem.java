@@ -13,7 +13,7 @@ public class GrabberSubsystem extends SubsystemBase {
 
     public GrabberSubsystem(HardwareMap hardwareMap, Telemetry telemetry){
         this.telemetry = telemetry;
-        grabberServo = new SimpleServo(hardwareMap, "grabberServo", 0, 180);
+        grabberServo = new SimpleServo(hardwareMap, "GRABBER_SERVO", 0, 180);
         openServo();
     }
 
